@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Culculation">
+      <UniqueIdentifier>{aec0e6af-7119-426c-b1fd-a88f637bb0db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dialog">
+      <UniqueIdentifier>{bf7f8c15-c9d3-464c-918f-063d02fb6880}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{5a3add4a-b49c-4eab-8920-f9b46b07bf51}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Culculation</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Culculation</Filter>
+    </ClInclude>
+    <ClInclude Include="Hshape.h">
+      <Filter>Culculation</Filter>
+    </ClInclude>
+    <ClInclude Include="Ring.h">
+      <Filter>Culculation</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Culculation</Filter>
+    </ClInclude>
+    <ClInclude Include="PageCircle.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="PageH.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="PageRect.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="PageRing.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="PageBase.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="SecCharact.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="SecCharactDlg.h">
+      <Filter>Dialog</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>Culculation</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Culculation</Filter>
+    </ClCompile>
+    <ClCompile Include="Hshape.cpp">
+      <Filter>Culculation</Filter>
+    </ClCompile>
+    <ClCompile Include="Ring.cpp">
+      <Filter>Culculation</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Culculation</Filter>
+    </ClCompile>
+    <ClCompile Include="PageCircle.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="PageH.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="PageRect.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="PageRing.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="PageBase.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="SecCharact.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="SecCharactDlg.cpp">
+      <Filter>Dialog</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SecCharact.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\SecCharact.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\SecCharact.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\..\circle.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="..\..\..\36.求截面特性\circle.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ring.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\rect.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\H.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\circle.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\空心圆.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\矩形.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\H形.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\circle - 副本.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
