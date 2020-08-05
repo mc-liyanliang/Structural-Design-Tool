@@ -1,4 +1,5 @@
 #pragma once
+#include <afxstr.h>
 class CAxialCompressionData
 {
 public:
@@ -7,8 +8,8 @@ public:
 	CAxialCompressionData& operator=(const CAxialCompressionData& rhs);
 	~CAxialCompressionData(void);
 public:
-	void SetSecType(const UINT enSecType);
-	UINT GetSecType() const;
+	void SetSecType(const int enSecType);
+	int GetSecType() const;
 
 	void SetHeight(const double dHeight);
 	double GetHeight() const;
@@ -34,14 +35,14 @@ public:
 	void SetMainbarGrade(const CString& strMainbarGrade);
 	CString GetMainbarGrade() const;
 
-	void SetSpiralStirrup(BOOL bSpiralStirrup);
-	BOOL GetSpiralStirrup() const;
+	void SetbSpiralStirrup(BOOL bSpiralStirrup);
+	BOOL bSpiralStirrup() const;
 
 	void SetSpiralStirrupDia(const CString& strSpiralStirrupDia);
 	CString GetSpiralStirrupDia() const;
 
 	void SetSpiralStirrupSpace(const double dSpiralStirrupSpace);
-	double GetSpiralStirrupSpacae() const;
+	double GetSpiralStirrupSpace() const;
 
 	void SetSpiralStirrupGrade(const CString& strSpiralStirrupGrade);
 	CString GetSpiralStirrupGrade() const;
@@ -49,7 +50,7 @@ public:
 	void SetCoreSecDiameter(const double dCoreSecDiameter);
 	double GetCoreSecDiameter() const;
 private:
-	UINT    m_nSecType;
+	int     m_nSecType;
 	double  m_dHeight;
 	double  m_dWidth;
 	double  m_dLength;

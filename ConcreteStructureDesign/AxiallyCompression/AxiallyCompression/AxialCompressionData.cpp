@@ -43,7 +43,7 @@ CAxialCompressionData::~CAxialCompressionData(void)
 
 void CAxialCompressionData::Init()
 {
-	m_nSecType = CTool::en_Rect;
+	m_nSecType = (int)CTool::en_Rect;
 	m_dHeight = 450.0;
 	m_dWidth = 450.0;
 	m_dLength = 62000.0;
@@ -59,12 +59,12 @@ void CAxialCompressionData::Init()
 	m_dCoreSecDiameter = 440.0;
 }
 
-void CAxialCompressionData::SetSecType(const UINT enSecType)
+void CAxialCompressionData::SetSecType(const int enSecType)
 {
 	m_nSecType = enSecType;
 }
 
-UINT CAxialCompressionData::GetSecType() const
+int CAxialCompressionData::GetSecType() const
 {
 	return m_nSecType;
 }
@@ -149,12 +149,12 @@ CString CAxialCompressionData::GetMainbarGrade() const
 	return m_strMainbarGrade;
 }
 
-void CAxialCompressionData::SetSpiralStirrup(BOOL bSpiralStirrup)
+void CAxialCompressionData::SetbSpiralStirrup(BOOL bSpiralStirrup)
 {
 	m_bSpiralStirrup = bSpiralStirrup;
 }
 
-BOOL CAxialCompressionData::GetSpiralStirrup() const
+BOOL CAxialCompressionData::bSpiralStirrup() const
 {
 	return m_bSpiralStirrup;
 }
@@ -174,7 +174,7 @@ void CAxialCompressionData::SetSpiralStirrupSpace(const double dSpiralStirrupSpa
 	m_dSpiralStirrupSpace = dSpiralStirrupSpace;
 }
 
-double CAxialCompressionData::GetSpiralStirrupSpacae() const
+double CAxialCompressionData::GetSpiralStirrupSpace() const
 {
 	return m_dSpiralStirrupSpace;
 }

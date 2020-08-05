@@ -53,6 +53,7 @@ CAxiallyCompressionDlg::CAxiallyCompressionDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CAxiallyCompressionDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_pData = new CAxialCompressionData;
 }
 
 void CAxiallyCompressionDlg::DoDataExchange(CDataExchange* pDX)
@@ -65,7 +66,7 @@ void CAxiallyCompressionDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_DIAMETER, m_EditDiameter);
 	DDX_Control(pDX, IDC_EDIT_AXIAL_DESIGN_VALUE, m_EditAxialDisignValue);
 	DDX_Control(pDX, IDC_EDIT_STABILITY_FACTOR, m_EditStabilityFactor);
-	DDX_Control(pDX, IDC_COMBO_CONCRETE_GRADE, m_ComboComcreteGrade);
+	DDX_Control(pDX, IDC_COMBO_CONCRETE_GRADE, m_ComboConcreteGrade);
 	DDX_Control(pDX, IDC_COMBO_MAINBAR_GRADE, m_ComboMainbarGrade);
 	DDX_Control(pDX, IDC_CHECK_SPIRALRABAR, m_CheckSpiralRebar);
 	DDX_Control(pDX, IDC_COMBO_SPIRALREBAR_DIA, m_ComboSpiralStirrupDia);
@@ -81,6 +82,8 @@ BEGIN_MESSAGE_MAP(CAxiallyCompressionDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON_CALCULATE, &CAxiallyCompressionDlg::OnBnClickedButtonCalculate)
+	ON_BN_CLICKED(IDC_BUTTON_RESET, &CAxiallyCompressionDlg::OnBnClickedButtonReset)
 END_MESSAGE_MAP()
 
 
@@ -117,7 +120,7 @@ BOOL CAxiallyCompressionDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 	InitComboList();
-
+	Data2Dlg();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -173,9 +176,131 @@ HCURSOR CAxiallyCompressionDlg::OnQueryDragIcon()
 
 void CAxiallyCompressionDlg::InitComboList()
 {
-	CTool::InitRebarDiameterComb(m_ComboSpiralStirrupDia);
-	CTool::InitSecTypeComb(m_ComboSecType);
+	m_Tool.InitSecTypeComb(m_ComboSecType);
+
+	m_Tool.InitConcreteGradeComb(m_ComboConcreteGrade);
+
+	m_Tool.InitRebarDiameterComb(m_ComboSpiralStirrupDia);
+
+	m_Tool.InitRebarGradeComb(m_ComboMainbarGrade);
+	m_Tool.InitRebarGradeComb(m_ComboSpiralStirrupGrade);
+}
+
+void CAxiallyCompressionDlg::Data2Dlg()
+{
+	m_ComboSecType.SetCurSel(m_pData->GetSecType());
+
+	CString str;
+	str.Format(_T("%.0f"), m_pData->GetHeight());
+	m_EditHeight.SetWindowText(str);
+
+	str.Format(_T("%.0f"), m_pData->GetWidth());
+	m_EditWidth.SetWindowText(str);
+
+	str.Format(_T("%.0f"), m_pData->GetLength());
+	m_EditLength.SetWindowText(str);
+
+	str.Format(_T("%.0f"), m_pData->GetDiameter());
+	m_EditDiameter.SetWindowText(str);
+
+	str.Format(_T("%.0f"), m_pData->GetAxialDesignValue());
+	m_EditAxialDisignValue.SetWindowText(str);
+
+	str.Format(_T("%.1f"), m_pData->GetStabilityFactor());
+	m_EditStabilityFactor.SetWindowText(str);
+
+	m_ComboConcreteGrade.SetCurSel(m_Tool.GetComboIndexByStr(m_ComboConcreteGrade, m_pData->GetConcreteGrade()));
+
+    m_ComboMainbarGrade.SetCurSel(m_Tool.GetComboIndexByStr(m_ComboMainbarGrade, m_pData->GetMainbarGrade()));
+
+	m_CheckSpiralRebar.SetCheck(m_pData->bSpiralStirrup());
+
+	m_ComboSpiralStirrupDia.SetCurSel(m_Tool.GetComboIndexByStr(m_ComboSpiralStirrupDia, m_pData->GetSpiralStirrupDia()));
+
+	str.Format(_T("%.0f"), m_pData->GetSpiralStirrupSpace());
+	m_EditSpiralStirrupSpace.SetWindowText(str);
+
+	m_ComboSpiralStirrupGrade.SetCurSel(m_Tool.GetComboIndexByStr(m_ComboSpiralStirrupGrade, m_pData->GetSpiralStirrupGrade()));
+
+	str.Format(_T("%.0f"), m_pData->GetCoreSecDiameter());
+	m_EditCoreSecDia.SetWindowText(str);
+
+	UpdateData(FALSE);
+}
+
+BOOL CAxiallyCompressionDlg::Dlg2Data()
+{
+	UpdateData(TRUE);
+
+	m_pData->SetSecType(m_ComboSecType.GetCurSel());
+
+	CString str;
+	m_EditHeight.GetWindowText(str);
+	m_pData->SetHeight(_ttof(str));
+
+	m_EditWidth.GetWindowText(str);
+	m_pData->SetWidth(_ttof(str));
+
+	m_EditLength.GetWindowText(str);
+	m_pData->SetLength(_ttof(str));
+
+	m_EditDiameter.GetWindowText(str);
+	m_pData->SetDiameter(_ttof(str));
+
+	m_EditAxialDisignValue.GetWindowText(str);
+	m_pData->SetAxialDesignValue(_ttof(str));
+
+	m_EditStabilityFactor.GetWindowText(str);
+	m_pData->SetStabilityFactor(_ttof(str));
+
+	m_ComboConcreteGrade.GetLBText(m_ComboConcreteGrade.GetCurSel(), str);
+	m_pData->SetConcreteGrade(str);
+
+	m_ComboMainbarGrade.GetLBText(m_ComboMainbarGrade.GetCurSel(), str);
+	m_pData->SetMainbarGrade(str);
+	
+	m_pData->SetbSpiralStirrup(m_CheckSpiralRebar.GetCheck());
+
+	m_ComboSpiralStirrupDia.GetLBText(m_ComboSpiralStirrupDia.GetCurSel(), str);
+	m_pData->SetSpiralStirrupDia(str);
+
+	m_EditSpiralStirrupSpace.GetWindowText(str);
+	m_pData->SetSpiralStirrupSpace(_ttof(str));
+
+	m_ComboSpiralStirrupGrade.GetLBText(m_ComboSpiralStirrupGrade.GetCurSel(), str);
+	m_pData->SetConcreteGrade(str);
+
+	m_EditCoreSecDia.GetWindowText(str);
+	m_pData->SetCoreSecDiameter(_ttof(str));
+
+	return TRUE;
+}
+
+void CAxiallyCompressionDlg::PostNcDestroy()
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	CDialogEx::PostNcDestroy();
+	if (m_pData != nullptr)
+	{
+		delete m_pData;
+		m_pData = nullptr;
+	}
 }
 
 
+void CAxiallyCompressionDlg::OnBnClickedButtonCalculate()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Dlg2Data();
+	double dConcreteFc = m_Tool.GetConcreteFcByGrade(m_pData->GetConcreteGrade());
+	int nRebarFy = m_Tool.GetRebarFyByGrade(m_pData->GetMainbarGrade());
+	double dRebarArea = (m_pData->GetAxialDesignValue() * 1000.0 - 0.9 * m_pData->GetStabilityFactor() * dConcreteFc * m_pData->GetHeight() * m_pData->GetWidth()) / (0.9 * m_pData->GetStabilityFactor() * nRebarFy);
+}
 
+
+void CAxiallyCompressionDlg::OnBnClickedButtonReset()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	m_pData->Init();
+	Data2Dlg();
+}
